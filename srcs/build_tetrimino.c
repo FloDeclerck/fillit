@@ -6,7 +6,7 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 18:20:08 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/05 18:20:33 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/08 20:00:45 by rmusella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void		parse_tetri(char *tetri_str, t_tetrimino *t)
 	set_v(t);
 }
 
-void			parse_clean_string(char *str, t_game *game)
+void			parse_string(char *str, t_game *game)
 {
 	char		**pieces_tab;
 	char		**tmp_tab;

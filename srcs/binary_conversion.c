@@ -6,9 +6,12 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 18:12:55 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/05 18:17:00 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/08 19:52:49 by rmusella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
+#include "fillit.h"
 
 static int		shift_top_left(int value)
 {

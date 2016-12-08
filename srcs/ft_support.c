@@ -6,13 +6,13 @@
 /*   By: fdeclerc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 11:27:17 by fdeclerc          #+#    #+#             */
-/*   Updated: 2016/12/08 17:22:27 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/08 20:11:03 by rmusella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fillit.h"
+#include "fillit.h"
 
-static int		up_to_sqrt(int nb)
+int		up_to_sqrt(const int nb)
 {
 	int i;
 

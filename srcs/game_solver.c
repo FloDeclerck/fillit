@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   slv.c                                              :+:      :+:    :+:   */
+/*   game_solver.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/04 20:22:08 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/06 21:03:55 by rmusella         ###   ########.fr       */
+/*   Created: 2016/12/08 20:18:06 by rmusella          #+#    #+#             */
+/*   Updated: 2016/12/08 20:18:10 by rmusella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include "libft.h"
 extern const t_pattern		g_patterns[];
 
-int		set(t_game *game, t_tetrimino *t)
+static int		set(t_game *game, t_tetrimino *t)
 {
 	int				i;
 	t_bit_tab		tmp_bits;
@@ -36,10 +37,10 @@ int		set(t_game *game, t_tetrimino *t)
 	return (1);
 }
 
-void	unset(t_game *game, t_tetrimino *t)
+static void	unset(t_game *game, t_tetrimino *t)
 {
 	int				i;
-	t_bit_form		tmp_bits;
+	t_bit_tab		tmp_bits;
 
 	tmp_bits = t->bits;
 	tmp_bits.full >>= t->offset.x;
@@ -51,7 +52,7 @@ void	unset(t_game *game, t_tetrimino *t)
 	}
 }
 
-int		resolve(t_game *game, int t_i, int d)
+static int		resolve(t_game *game, int t_i, int d)
 {
 	t_tetrimino		*t;
 	t_coord			cursor_bckp;
@@ -68,7 +69,7 @@ int		resolve(t_game *game, int t_i, int d)
 			if (set(game, t))
 			{
 				game->cursor[t->pattern_i] = t->offset;
-				if ((t_i + 1 >= game->t_count) || resolve(game, t_i + 1, d)))
+				if ((t_i + 1 >= game->t_count) || resolve(game, t_i + 1, d))
 					return (1);
 				unset(game, t);
 				if (d > 1)
@@ -83,7 +84,7 @@ int		resolve(t_game *game, int t_i, int d)
 	return (0);
 }
 
-void	clear_game(t_game *game)
+static void	clear_game(t_game *game)
 {
 	int		i;
 

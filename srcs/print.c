@@ -6,7 +6,7 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 20:25:07 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/08 17:26:33 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/08 20:23:42 by rmusella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void			print_game(unsigned short game[], int game_size)
 	}
 }
 
-void			print_value_bits(unsigned short value, int sep, int n)
+void			print_value_bits(unsigned short value, int cursor, int n)
 {
 	unsigned short	mask;
 	int				i;
@@ -38,7 +38,7 @@ void			print_value_bits(unsigned short value, int sep, int n)
 			ft_putchar('1');
 		else
 			ft_putchar('0');
-		if (sep && (i % sep) == 0)
+		if (cursor && (i % cursor) == 0)
 			ft_putchar(' ');
 		mask >>= 1;
 		i++;

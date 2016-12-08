@@ -6,7 +6,7 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 18:05:05 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/05 16:26:38 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/08 20:20:13 by rmusella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,5 @@ void			parse_file(int fd, t_game *game)
 	char_counter = read_input(fd, buffer);
 	check_tot_length(char_counter);
 	set_delimitator_for_split(buffer);
-	parse_clean_string(buffer, game);
+	parse_string(buffer, game);
 }

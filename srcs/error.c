@@ -6,16 +6,17 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 18:17:41 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/01 18:57:30 by fdeclerc         ###   ########.fr       */
+/*   Updated: 2016/12/08 20:06:23 by rmusella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
+#include "fillit.h"
 #include <stdlib.h>
 
-void	ft_error_msg_exit(char *str)
+void	error_msg_exit(const char *str)
 {
-	ft_putstr_fd(1, str, ft_strlen(str));
-	ft_putstr_fd(1,"\n", 1);
+	ft_putstr_fd(str, 1);
+	ft_putchar_fd('\n', 1);
 	exit(EXIT_FAILURE);
 }
