@@ -6,22 +6,21 @@
 #    By: fdeclerc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/07 12:03:18 by fdeclerc          #+#    #+#              #
-#    Updated: 2016/12/08 20:22:16 by fdeclerc         ###   ########.fr        #
+#    Updated: 2016/12/08 20:48:55 by rmusella         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
-SRCS = srcs/binary_conversion.c \
-	   srcs/build_tetrimino.c \
-	   srcs/checkfile.c \
-	   srcs/check_pattern.c \
-	   srcs/error.c \
-	   srcs/fillit.c \
-	   srcs/game_solver.c \
-	   srcs/parsing.c \
-	   srcs/print.c \
-	   srcs/ft_support.c
+SRCS = binary_conversion.c \
+	   build_tetrimino.c \
+	   check_pattern.c \
+	   error.c \
+	   fillit.c \
+	   game_solver.c \
+	   parsing.c \
+	   print.c \
+	   ft_support.c
 
 OBJS = $(addprefix $(OBJDIR),$(SRCS:.c=.o))
 

@@ -6,7 +6,7 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 18:20:08 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/08 20:00:45 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/08 20:46:52 by rmusella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,15 @@ static void		parse_tetri(char *tetri_str, t_tetrimino *t)
 		ft_strcpy(t_str + (i * 4), t_tab[i]);
 		i++;
 	}
-	free_tab(&t_tab);
+	free(&t_tab);
 	t->value = str_to_bin(t_str);
-	t->pattern_label = matched_pattern_label(t->value);
-	if (t->pattern_label == -1)
+	t->pattern_i = matched_pattern_i(t->value);
+	if (t->pattern_i == -1)
 		return (error_msg_exit("error : invalid shape found"));
 	t->offset.x = 0;
 	t->offset.y = 0;
 	ft_strdel(&t_str);
-	set_v(t);
+	set_dim(t);
 }
 
 void			parse_string(char *str, t_game *game)
@@ -106,6 +106,6 @@ void			parse_string(char *str, t_game *game)
 	tmp_tab++;
 	tetri_index++;
 	}
-	free_tab(&pieces_tab);
+	free(&pieces_tab);
 	game->t_count = tetri_index;
 }

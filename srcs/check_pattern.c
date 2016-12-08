@@ -6,13 +6,13 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 17:49:04 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/08 20:02:23 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/08 20:53:23 by rmusella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-const	t_pattern	tetri_patterns[PATTERNS_COUNT] = {
+const	t_pattern	g_patterns[PATTERNS_COUNT] = {
 	{ "####............", 61440, 4},
 	{ "#...#...#...#...", 34952, 1},
 	{ "##..##..........", 52224, 2},
@@ -34,14 +34,14 @@ const	t_pattern	tetri_patterns[PATTERNS_COUNT] = {
 	{ ".#..##..#.......", 19584, 2}
 };
 
-int		matched_pattern_label(unsigned short value)
+int		matched_pattern_i(unsigned short value)
 {
 	int	i;
 
 	i = 0;
 	while (i < PATTERNS_COUNT)
 	{
-		if (value == tetri_patterns[i].value)
+		if (value == g_patterns[i].value)
 			return (i);
 		i++;
 	}

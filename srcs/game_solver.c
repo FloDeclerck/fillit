@@ -6,7 +6,7 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 20:18:06 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/08 20:18:10 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/08 21:12:30 by rmusella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int		set(t_game *game, t_tetrimino *t)
 	return (1);
 }
 
-static void	unset(t_game *game, t_tetrimino *t)
+static void		unset(t_game *game, t_tetrimino *t)
 {
 	int				i;
 	t_bit_tab		tmp_bits;
@@ -52,7 +52,7 @@ static void	unset(t_game *game, t_tetrimino *t)
 	}
 }
 
-static int		resolve(t_game *game, int t_i, int d)
+int		resolve(t_game *game, int t_i, int d)
 {
 	t_tetrimino		*t;
 	t_coord			cursor_bckp;
@@ -89,7 +89,6 @@ static void	clear_game(t_game *game)
 	int		i;
 
 	ft_bzero(game->m, sizeof(game->m));
-	ft_bzero(game->mdz, sizeof(game->mdz));
 	ft_bzero(game->cursor, sizeof(game->cursor));
 	i = 0;
 	while (i < game->t_count)

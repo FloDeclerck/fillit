@@ -6,15 +6,14 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 17:36:59 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/08 20:24:00 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/08 21:23:00 by rmusella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
 
-# include <stdint.h>
-# include "../libft/libft.h"
+# include "libft.h"
 
 # define CHAR_EMPTY                '.'
 # define CHAR_BLOCK                '#'
@@ -27,8 +26,7 @@
 
 # define PATTERNS_COUNT    19
 
-# define MAX(A,B) = (A > B ? A : B) ;
-
+# define MAX(A,B) (((A) > (B)) ? (A) : (B)) ;
 
 typedef enum			e_mask
 {
@@ -75,26 +73,19 @@ typedef struct		s_game
 	int				total_space;
 	int				space_required;
 	unsigned short	m[16];
-	unsigned short	mdz[16];
 	t_coord			cursor[19];
 }					t_game;
 
-
 unsigned short		str_to_bin(char *str);
 void				parse_string(char *str, t_game *game);
-int					matched_pattern_label(unsigned short value);
+int					matched_pattern_i(unsigned short value);
 void				error_msg_exit(const char *str);
 int					up_to_sqrt(const int nb);
+int					resolve(t_game *game, int t_i, int d);
 void				game_solver(t_game *game);
 void				parse_file(int fd, t_game *game);
 void				print_game(unsigned short game[], int game_size);
 void				print_value_bits(unsigned short value, int cursor, int n);
 void				print_solution(t_game *game);
-
-
-
-
-
-
 
 #endif
