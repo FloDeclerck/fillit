@@ -6,7 +6,7 @@
 /*   By: fdeclerc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 13:54:57 by fdeclerc          #+#    #+#             */
-/*   Updated: 2016/12/08 17:45:55 by fdeclerc         ###   ########.fr       */
+/*   Updated: 2016/12/08 19:41:40 by rmusella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int				ft_strncmp(const char *s1, const char *s2, size_t n);
 char			*ft_strnstr(const char *big, const char *little, size_t len);
 size_t			ft_strlcat(char *dest, const char *src, size_t size);
 void			ft_putchar(char c);
-void			ft_putstr(char *str);
+void			ft_putstr(const char *str);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char const *s, int fd);
 void			*ft_memalloc(size_t size);
