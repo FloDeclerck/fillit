@@ -6,7 +6,7 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 17:36:59 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/07 21:58:57 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/08 20:24:00 by rmusella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define TETRIMINO_HEIGHT        4
 # define MAX_TETRIMINOS_NB            26
 # define TETRIMINO_SIZE        (TETRIMINO_WIDTH * TETRIMINO_HEIGHT)
-# define BUFFER_SIZE            (MAX_TETRIMINOS_NB * (MAX_TETRIMINO_SIZE + 1))
+# define BUFFER_SIZE            (MAX_TETRIMINOS_NB * (TETRIMINO_SIZE + 1))
 
 # define PATTERNS_COUNT    19
 
@@ -48,7 +48,7 @@ typedef struct				s_pattern
 {
 		char				raw_form[16];
 		unsigned short		value;
-		int					label;
+		int					p_x;
 }							t_pattern;
 
 typedef struct		s_coord
@@ -59,7 +59,7 @@ typedef struct		s_coord
 
 typedef struct		s_tetrimino
 {
-	int				pattern_index;
+	int				pattern_i;
 	unsigned short	value;
 	t_bit_tab		bits;
 	t_coord			offset;
@@ -78,5 +78,23 @@ typedef struct		s_game
 	unsigned short	mdz[16];
 	t_coord			cursor[19];
 }					t_game;
+
+
+unsigned short		str_to_bin(char *str);
+void				parse_string(char *str, t_game *game);
+int					matched_pattern_label(unsigned short value);
+void				error_msg_exit(const char *str);
+int					up_to_sqrt(const int nb);
+void				game_solver(t_game *game);
+void				parse_file(int fd, t_game *game);
+void				print_game(unsigned short game[], int game_size);
+void				print_value_bits(unsigned short value, int cursor, int n);
+void				print_solution(t_game *game);
+
+
+
+
+
+
 
 #endif
