@@ -6,7 +6,7 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 17:36:59 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/08 21:23:00 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/08 22:44:51 by rmusella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ unsigned short		str_to_bin(char *str);
 void				parse_string(char *str, t_game *game);
 int					matched_pattern_i(unsigned short value);
 void				error_msg_exit(const char *str);
+void				free_2D(char ***tab);
 int					up_to_sqrt(const int nb);
 int					resolve(t_game *game, int t_i, int d);
 void				game_solver(t_game *game);

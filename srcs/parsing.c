@@ -6,7 +6,7 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 18:05:05 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/08 20:20:13 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/08 22:38:16 by rmusella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void		set_delimitator_for_split(char *str)
 		error_msg_exit("error : invalid separator found between two pieces");
 	if (str[cursor] == '\n' && cursor == (int)ft_strlen(str))
 		error_msg_exit("error : a new line was found after the last piece");
-	str[cursor] = '\0';
+	str[cursor] = '\t';
 	cursor += 21;
 	}
 }

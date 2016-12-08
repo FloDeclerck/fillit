@@ -6,7 +6,7 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 18:20:08 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/08 20:46:52 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/08 22:51:46 by rmusella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void		parse_tetri(char *tetri_str, t_tetrimino *t)
 		ft_strcpy(t_str + (i * 4), t_tab[i]);
 		i++;
 	}
-	free(&t_tab);
+	free_2D(&t_tab);
 	t->value = str_to_bin(t_str);
 	t->pattern_i = matched_pattern_i(t->value);
 	if (t->pattern_i == -1)
@@ -95,7 +95,7 @@ void			parse_string(char *str, t_game *game)
 	char		**tmp_tab;
 	int			tetri_index;
 
-	if (!(pieces_tab = ft_strsplit(str, '\0')))
+	if (!(pieces_tab = ft_strsplit(str, '\t')))
 		return (error_msg_exit("error: split operation failure"));
 	tmp_tab = pieces_tab;
 	tetri_index = 0;
@@ -106,6 +106,6 @@ void			parse_string(char *str, t_game *game)
 	tmp_tab++;
 	tetri_index++;
 	}
-	free(&pieces_tab);
+	free_2D(&pieces_tab);
 	game->t_count = tetri_index;
 }
