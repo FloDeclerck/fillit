@@ -6,15 +6,11 @@
 #    By: fdeclerc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/07 12:03:18 by fdeclerc          #+#    #+#              #
-#    Updated: 2016/12/07 22:48:35 by rmusella         ###   ########.fr        #
+#    Updated: 2016/12/08 20:22:16 by fdeclerc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
-
-CC = gcc
-
-CFLAGS = -Wall -Wextra -Werror
 
 SRCS = srcs/binary_conversion.c \
 	   srcs/build_tetrimino.c \
@@ -24,24 +20,43 @@ SRCS = srcs/binary_conversion.c \
 	   srcs/fillit.c \
 	   srcs/game_solver.c \
 	   srcs/parsing.c \
-	   srcs/print.c
+	   srcs/print.c \
+	   srcs/ft_support.c
 
-OBJS = $(subst .c, .o, $(patsubst srcs/,,$(SRCS)))
+OBJS = $(addprefix $(OBJDIR),$(SRCS:.c=.o))
 
-all: $(NAME)
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
 
-$(NAME): lib $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L libft -lft
+LIBFT = ./libft/libft.a
+LIBINC = -I./libft
+LIBLINK = -L./libft -lft
 
-$(OBJS):
-	$(CC) $(CFLAGS) -c $(SRCS) -Iincludes/ -Ilibft/includes/
+SRCDIR = ./srcs/
+INCDIR = ./includes/
+OBJDIR = ./objs/
 
-lib:
-	make -C libft
+all: libft objs $(NAME)
+
+objs:
+	mkdir -p $(OBJDIR)
+
+$(OBJDIR)%.o:$(SRCDIR)%.c
+	$(CC) $(CFLAGS) $(LIBINC) -I $(INCDIR) -o $@ -c $<
+
+libft: $(LIBFT)
+
+$(LIBFT):
+	make -C ./libft
+
+$(NAME): $(OBJS)
+	$(CC) $(LIBLINK) -o $(NAME) $(OBJS)
 
 clean:
-	/bin/rm -rf $(OBJS)
-	make -C libft fclean
+	rm -rf $(OBJDIR)
+
+fclean: clean
+	rm -rf $(NAME)
 
 re: fclean all
 
