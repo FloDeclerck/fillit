@@ -6,7 +6,7 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 18:05:05 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/09 15:11:28 by fdeclerc         ###   ########.fr       */
+/*   Updated: 2016/12/09 16:47:53 by rmusella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@ static void		set_delimitator_for_split(char *str)
 	cursor = 20;
 	while ((cursor + 1) <= (int)ft_strlen(str))
 	{
-		if (str[cursor] != '\n')
-			error_msg_exit("error : invalid separator found between two piece");
-		if (str[cursor] == '\n' && cursor == (int)ft_strlen(str))
-			error_msg_exit("error : a new line was found after the last piece");
-		str[cursor] = '\t';
-		cursor += 21;
+	if (str[cursor] != '\n')
+		error_msg_exit("error");
+	if (str[cursor] == '\n' && cursor == (int)ft_strlen(str))
+		error_msg_exit("error");
+	str[cursor] = '\t';
+	cursor += 21;
 	}
 }
 
 static void		check_tot_length(int length)
 {
 	if (length == 0 || ((length + 1) % (TETRIMINO_SIZE + 1)) != 0)
-		error_msg_exit("error : input file length is invalid");
+		error_msg_exit("error");
 }
 
 static int		read_input(int fd, char *buffer)
@@ -43,7 +43,7 @@ static int		read_input(int fd, char *buffer)
 	ft_bzero(buffer, BUFFER_SIZE + 1);
 	char_count = read(fd, buffer, BUFFER_SIZE);
 	if (char_count == -1)
-		error_msg_exit("error : read operation failure");
+		error_msg_exit("error");
 	return (char_count);
 }
 
