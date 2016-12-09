@@ -6,27 +6,27 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 18:20:08 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/08 22:51:46 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/09 15:30:56 by fdeclerc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
 
-static int		get_width(unsigned short v)
+static int				get_width(unsigned short v)
 {
-	int		width;
+	int					width;
 
 	width = 4;
 	while (width && !(v & 0x1000))
 	{
-	v >>= 1;
-	width--;
+		v >>= 1;
+		width--;
 	}
 	return (width);
 }
 
-static void		set_dim(t_tetrimino *t)
+static void				set_dim(t_tetrimino *t)
 {
 	int					i;
 	unsigned long long	mask;
@@ -41,44 +41,44 @@ static void		set_dim(t_tetrimino *t)
 			t->height++;
 			t->width = MAX(t->width, get_width(t->bits.part[i]));
 		}
-	mask >>= 4;
-	++i;
+		mask >>= 4;
+		++i;
 	}
 }
 
-static void		check_tetri(char *tetri_str)
+static void				check_tetri(char *tetri_str)
 {
-	int			i;
-	char		c;
+	int					i;
+	char				c;
 
 	i = 0;
 	while (i < TETRIMINO_SIZE)
 	{
-	c = tetri_str[i];
-	if (((i + 1) % 5 == 0 && c != '\n')
-			|| ((i + 1) % 5 != 0 && c != CHAR_BLOCK && c != CHAR_EMPTY))
-	error_msg_exit("error : invalid char found in tetriminos");
-	i++;
+		c = tetri_str[i];
+		if (((i + 1) % 5 == 0 && c != '\n')
+				|| ((i + 1) % 5 != 0 && c != CHAR_BLOCK && c != CHAR_EMPTY))
+			error_msg_exit("error : invalid char found in tetriminos");
+		i++;
 	}
 }
 
-static void		parse_tetri(char *tetri_str, t_tetrimino *t)
+static void				parse_tetri(char *tetri_str, t_tetrimino *t)
 {
-	char		**t_tab;
-	char		*t_str;
-	int			i;
+	char				**t_tab;
+	char				*t_str;
+	int					i;
 
 	if (!(t_tab = ft_strsplit(tetri_str, '\n')))
 		return (error_msg_exit("error : split operation failure"));
 	if (!(t_str = ft_strnew(16)))
 		return (error_msg_exit("error : malloc operation failure"));
 	i = 0;
-		while (t_tab[i])
+	while (t_tab[i])
 	{
 		ft_strcpy(t_str + (i * 4), t_tab[i]);
 		i++;
 	}
-	free_2D(&t_tab);
+	free_2d(&t_tab);
 	t->value = str_to_bin(t_str);
 	t->pattern_i = matched_pattern_i(t->value);
 	if (t->pattern_i == -1)
@@ -89,11 +89,11 @@ static void		parse_tetri(char *tetri_str, t_tetrimino *t)
 	set_dim(t);
 }
 
-void			parse_string(char *str, t_game *game)
+void					parse_string(char *str, t_game *game)
 {
-	char		**pieces_tab;
-	char		**tmp_tab;
-	int			tetri_index;
+	char				**pieces_tab;
+	char				**tmp_tab;
+	int					tetri_index;
 
 	if (!(pieces_tab = ft_strsplit(str, '\t')))
 		return (error_msg_exit("error: split operation failure"));
@@ -101,11 +101,11 @@ void			parse_string(char *str, t_game *game)
 	tetri_index = 0;
 	while (*tmp_tab)
 	{
-	check_tetri(*tmp_tab);
-	parse_tetri(*tmp_tab, &game->t[tetri_index]);
-	tmp_tab++;
-	tetri_index++;
+		check_tetri(*tmp_tab);
+		parse_tetri(*tmp_tab, &game->t[tetri_index]);
+		tmp_tab++;
+		tetri_index++;
 	}
-	free_2D(&pieces_tab);
+	free_2d(&pieces_tab);
 	game->t_count = tetri_index;
 }

@@ -6,18 +6,19 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 20:18:06 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/08 21:12:30 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/09 15:32:15 by fdeclerc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include "libft.h"
+
 extern const t_pattern		g_patterns[];
 
-static int		set(t_game *game, t_tetrimino *t)
+static int					set(t_game *game, t_tetrimino *t)
 {
-	int				i;
-	t_bit_tab		tmp_bits;
+	int						i;
+	t_bit_tab				tmp_bits;
 
 	tmp_bits = t->bits;
 	tmp_bits.full >>= t->offset.x;
@@ -25,7 +26,7 @@ static int		set(t_game *game, t_tetrimino *t)
 	while (i < t->height)
 	{
 		if (tmp_bits.part[i] & game->m[i + t->offset.y])
-		return (0);
+			return (0);
 		i++;
 	}
 	i = 0;
@@ -37,10 +38,10 @@ static int		set(t_game *game, t_tetrimino *t)
 	return (1);
 }
 
-static void		unset(t_game *game, t_tetrimino *t)
+static void					unset(t_game *game, t_tetrimino *t)
 {
-	int				i;
-	t_bit_tab		tmp_bits;
+	int						i;
+	t_bit_tab				tmp_bits;
 
 	tmp_bits = t->bits;
 	tmp_bits.full >>= t->offset.x;
@@ -52,10 +53,10 @@ static void		unset(t_game *game, t_tetrimino *t)
 	}
 }
 
-int		resolve(t_game *game, int t_i, int d)
+int							resolve(t_game *game, int t_i, int d)
 {
-	t_tetrimino		*t;
-	t_coord			cursor_bckp;
+	t_tetrimino				*t;
+	t_coord					cursor_bckp;
 
 	t = &game->t[t_i];
 	t->offset = cursor_bckp = game->cursor[t->pattern_i];
@@ -63,7 +64,7 @@ int		resolve(t_game *game, int t_i, int d)
 	if (t_i > 0)
 		d = (game->t[t_i - 1].value == t->value) ? d + 1 : 0;
 	while (t->offset.y + t->height <= game->size)
-		{
+	{
 		while (t->offset.x + t->width <= game->size)
 		{
 			if (set(game, t))
@@ -73,7 +74,7 @@ int		resolve(t_game *game, int t_i, int d)
 					return (1);
 				unset(game, t);
 				if (d > 1)
-				return (0);
+					return (0);
 			}
 			t->offset.x++;
 		}
@@ -84,9 +85,9 @@ int		resolve(t_game *game, int t_i, int d)
 	return (0);
 }
 
-static void	clear_game(t_game *game)
+static void					clear_game(t_game *game)
 {
-	int		i;
+	int						i;
 
 	ft_bzero(game->m, sizeof(game->m));
 	ft_bzero(game->cursor, sizeof(game->cursor));
@@ -99,7 +100,7 @@ static void	clear_game(t_game *game)
 	}
 }
 
-void	game_solver(t_game *game)
+void						game_solver(t_game *game)
 {
 	game->space_required = game->t_count * 4;
 	game->size = up_to_sqrt(game->space_required);
@@ -112,6 +113,6 @@ void	game_solver(t_game *game)
 			print_solution(game);
 			break ;
 		}
-	game->size++;
+		game->size++;
 	}
 }

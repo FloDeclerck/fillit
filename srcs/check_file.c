@@ -6,7 +6,7 @@
 /*   By: fdeclerc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 11:51:24 by fdeclerc          #+#    #+#             */
-/*   Updated: 2016/12/04 16:58:43 by fdeclerc         ###   ########.fr       */
+/*   Updated: 2016/12/09 14:53:30 by fdeclerc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int		is_char(int c, int i)
 
 static int		check_tetri(char *buffer, int i)
 {
-	int	j;
+	int			j;
 
 	if (i == 19)
 		return (0);
@@ -43,10 +43,10 @@ static int		check_tetri(char *buffer, int i)
 
 static int		check_block(char *buffer)
 {
-	int i;
-	int nb_diese;
-	int fi_diese;
-	int back;
+	int			i;
+	int			nb_diese;
+	int			fi_diese;
+	int			back;
 
 	i = 0;
 	nb_diese = 0;
@@ -69,12 +69,12 @@ static int		check_block(char *buffer)
 	return (0);
 }
 
-int			parse_file(int fd, t_map *map)
+int				parse_file(int fd, t_map *map)
 {
-	int		fd;
-	int		back;
-	int		lastback;
-	char	buffer[21];
+	int			fd;
+	int			back;
+	int			lastback;
+	char		buffer[21];
 
 	while ((back = read(fd, buffer, 21)) > 0)
 	{
@@ -86,7 +86,6 @@ int			parse_file(int fd, t_map *map)
 			ft_error_msg_exit("error: an invalid block separator was found");
 	}
 	if (back <= 0 && (lastback == 21 || !lastback))
-			ft_error_msg_exit("error: an invalid block separator was found");
-	return(1);
+		ft_error_msg_exit("error: an invalid block separator was found");
+	return (1);
 }
-

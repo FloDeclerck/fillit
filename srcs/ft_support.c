@@ -6,26 +6,24 @@
 /*   By: fdeclerc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 11:27:17 by fdeclerc          #+#    #+#             */
-/*   Updated: 2016/12/08 22:49:32 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/09 14:58:12 by fdeclerc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-void	free_2D(char ***tab)
+void	free_2d(char ***tab)
 {
-	char	**tmp;
+	char **tmp;
 
 	tmp = *tab;
-
 	while (**tab)
 	{
 		free(**tab);
 		(*tab)++;
 	}
-	free (tmp);
+	free(tmp);
 }
-
 
 int		up_to_sqrt(const int nb)
 {

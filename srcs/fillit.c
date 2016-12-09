@@ -6,7 +6,7 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/27 17:49:55 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/08 22:20:03 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/09 14:50:48 by fdeclerc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "libft.h"
 #include "fillit.h"
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	int		fd;
 	t_game	game;
@@ -26,7 +26,7 @@ int		main(int argc, char **argv)
 	else if (argc != 2)
 		error_msg_exit("error: number of arguments is invalid");
 	else
-	fd = open(argv[1], O_RDONLY);
+		fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		error_msg_exit("error opening the input file");
 	ft_memset(&game, 0, sizeof(game));

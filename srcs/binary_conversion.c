@@ -6,14 +6,14 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 18:12:55 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/08 19:52:49 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/09 14:49:21 by fdeclerc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
 
-static int		shift_top_left(int value)
+static int			shift_top_left(int value)
 {
 	if (value == 0)
 		return (0);
@@ -26,8 +26,8 @@ static int		shift_top_left(int value)
 
 unsigned short		str_to_bin(char *str)
 {
-	int		i;
-	int		value;
+	int				i;
+	int				value;
 
 	value = 0x0000;
 	i = 0xF;
@@ -36,7 +36,7 @@ unsigned short		str_to_bin(char *str)
 		if (*str == CHAR_BLOCK)
 			value = value | 1 << i;
 		str++;
-	i--;
+		i--;
 	}
 	value = shift_top_left(value);
 	return (value);
