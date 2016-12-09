@@ -6,7 +6,7 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 18:20:08 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/09 16:49:27 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/09 17:01:41 by rmusella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static int		get_width(unsigned short v)
 	width = 4;
 	while (width && !(v & 0x1000))
 	{
-	v >>= 1;
-	width--;
+		v >>= 1;
+		width--;
 	}
 	return (width);
 }
@@ -41,8 +41,8 @@ static void		set_dim(t_tetrimino *t)
 			t->height++;
 			t->width = MAX(t->width, get_width(t->bits.part[i]));
 		}
-	mask >>= 4;
-	++i;
+		mask >>= 4;
+		++i;
 	}
 }
 
@@ -54,11 +54,11 @@ static void		check_tetri(char *tetri_str)
 	i = 0;
 	while (i < TETRIMINO_SIZE)
 	{
-	c = tetri_str[i];
-	if (((i + 1) % 5 == 0 && c != '\n')
+		c = tetri_str[i];
+		if (((i + 1) % 5 == 0 && c != '\n')
 			|| ((i + 1) % 5 != 0 && c != CHAR_BLOCK && c != CHAR_EMPTY))
-	error_msg_exit("error");
-	i++;
+			error_msg_exit("error");
+		i++;
 	}
 }
 
@@ -73,7 +73,7 @@ static void		parse_tetri(char *tetri_str, t_tetrimino *t)
 	if (!(t_str = ft_strnew(16)))
 		return (error_msg_exit("error"));
 	i = 0;
-		while (t_tab[i])
+	while (t_tab[i])
 	{
 		ft_strcpy(t_str + (i * 4), t_tab[i]);
 		i++;
@@ -101,10 +101,10 @@ void			parse_string(char *str, t_game *game)
 	tetri_index = 0;
 	while (*tmp_tab)
 	{
-	check_tetri(*tmp_tab);
-	parse_tetri(*tmp_tab, &game->t[tetri_index]);
-	tmp_tab++;
-	tetri_index++;
+		check_tetri(*tmp_tab);
+		parse_tetri(*tmp_tab, &game->t[tetri_index]);
+		tmp_tab++;
+		tetri_index++;
 	}
 	free_2d(&pieces_tab);
 	game->t_count = tetri_index;

@@ -6,7 +6,7 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 18:05:05 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/09 16:47:53 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/09 17:02:16 by rmusella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ static void		set_delimitator_for_split(char *str)
 	cursor = 20;
 	while ((cursor + 1) <= (int)ft_strlen(str))
 	{
-	if (str[cursor] != '\n')
-		error_msg_exit("error");
-	if (str[cursor] == '\n' && cursor == (int)ft_strlen(str))
-		error_msg_exit("error");
-	str[cursor] = '\t';
-	cursor += 21;
+		if (str[cursor] != '\n')
+			error_msg_exit("error");
+		if (str[cursor] == '\n' && cursor == (int)ft_strlen(str))
+			error_msg_exit("error");
+		str[cursor] = '\t';
+		cursor += 21;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 17:36:59 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/09 16:46:03 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/09 17:04:30 by rmusella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,15 @@ typedef union			u_bit_tab
 
 typedef struct				s_pattern
 {
-		char				raw_form[16];
-		unsigned short		value;
-		int					p_x;
+	char					raw_form[16];
+	unsigned short			value;
+	int						p_x;
 }							t_pattern;
 
 typedef struct		s_coord
 {
-		int		x;
-		int		y;
+	int				x;
+	int				y;
 }					t_coord;
 
 typedef struct		s_tetrimino
