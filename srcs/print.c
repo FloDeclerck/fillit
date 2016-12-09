@@ -6,7 +6,7 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 20:25:07 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/09 16:50:09 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/09 22:51:21 by rmusella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void			print_value_bits(unsigned short value, int cursor, int n)
 	unsigned short	mask;
 	int				i;
 
-	mask = 0x1 << 15;
+	mask = 0x1 << 0xF;
 	i = 1;
 	while (mask > 0 && n--)
 	{
@@ -46,12 +46,12 @@ void			print_value_bits(unsigned short value, int cursor, int n)
 	ft_putchar('\n');
 }
 
-static void		write_t(char *r_game, int game_size, t_tetrimino *t, int t_i)
+static void		print_t(char *r_game, int game_size, t_tetrimino *t, int t_i)
 {
 	int				i;
 	int				j;
 	unsigned short	tmp_val;
-	int				index;
+	int				k;
 
 	i = 0;
 	while (i < t->height)
@@ -60,10 +60,10 @@ static void		write_t(char *r_game, int game_size, t_tetrimino *t, int t_i)
 		tmp_val = t->bits.part[i];
 		while (j < t->width)
 		{
-			if (tmp_val & (0x1 << 15))
+			if (tmp_val & (0x1 << 0xF))
 			{
-				index = (t->offset.y + i) * (game_size + 1) + (t->offset.x + j);
-				r_game[index] = 'A' + t_i;
+				k = (t->offset.y + i) * (game_size + 1) + (t->offset.x + j);
+				r_game[k] = 'A' + t_i;
 			}
 			tmp_val <<= 1;
 			j++;
@@ -93,7 +93,7 @@ void			print_solution(t_game *game)
 	ttr_i = 0;
 	while (ttr_i < game->t_count)
 	{
-		write_t(r_game, game->size, &game->t[ttr_i], ttr_i);
+		print_t(r_game, game->size, &game->t[ttr_i], ttr_i);
 		ttr_i++;
 	}
 	ft_putstr(r_game);
