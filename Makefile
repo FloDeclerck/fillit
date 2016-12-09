@@ -1,61 +1,52 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile1                                          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: fdeclerc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/12/07 12:03:18 by fdeclerc          #+#    #+#              #
-#    Updated: 2016/12/08 20:48:55 by rmusella         ###   ########.fr        #
+#    Created: 2016/12/09 17:45:48 by fdeclerc          #+#    #+#              #
+#    Updated: 2016/12/09 17:50:26 by fdeclerc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
-SRCS = binary_conversion.c \
-	   build_tetrimino.c \
-	   check_pattern.c \
-	   error.c \
-	   fillit.c \
-	   game_solver.c \
-	   parsing.c \
-	   print.c \
-	   ft_support.c
-
-OBJS = $(addprefix $(OBJDIR),$(SRCS:.c=.o))
-
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-LIBFT = ./libft/libft.a
-LIBINC = -I./libft
-LIBLINK = -L./libft -lft
+SRCS= srcs/binary_conversion.c \
+	  srcs/build_tetrimino.c \
+	  srcs/check_pattern.c \
+	  srcs/error.c \
+	  srcs/fillit.c \
+	  srcs/game_solver.c \
+	  srcs/parsing.c \
+	  srcs/print.c \
+	  srcs/ft_support.c
 
-SRCDIR = ./srcs/
-INCDIR = ./includes/
-OBJDIR = ./objs/
+OBJS = $(subst .c,.o,$(subst srcs/,,$(SRCS)))
 
-all: libft objs $(NAME)
 
-objs:
-	mkdir -p $(OBJDIR)
 
-$(OBJDIR)%.o:$(SRCDIR)%.c
-	$(CC) $(CFLAGS) $(LIBINC) -I $(INCDIR) -o $@ -c $<
+all: $(NAME)
 
-libft: $(LIBFT)
+$(NAME): lib $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L libft -lft
 
-$(LIBFT):
-	make -C ./libft
+$(OBJS):
+	$(CC) $(CFLAGS) -c $(SRCS) -Iincludes/ -Ilibft/includes/
 
-$(NAME): $(OBJS)
-	$(CC) $(LIBLINK) -o $(NAME) $(OBJS)
+lib:
+	make -C libft
 
 clean:
-	rm -rf $(OBJDIR)
+	/bin/rm -rf $(OBJS)
+	make -C libft clean
 
 fclean: clean
-	rm -rf $(NAME)
+	/bin/rm -rf $(NAME)
+	make -C libft fclean
 
 re: fclean all
 
