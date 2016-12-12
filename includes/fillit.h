@@ -6,7 +6,7 @@
 /*   By: rmusella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 17:36:59 by rmusella          #+#    #+#             */
-/*   Updated: 2016/12/09 17:04:30 by rmusella         ###   ########.fr       */
+/*   Updated: 2016/12/12 17:51:55 by rmusella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,51 +42,52 @@ typedef union			u_bit_tab
 	unsigned long long	full;
 }						t_bit_tab;
 
-typedef struct				s_pattern
+typedef struct			s_pattern
 {
-	char					raw_form[16];
-	unsigned short			value;
-	int						p_x;
-}							t_pattern;
+	char				raw_form[16];
+	unsigned short		value;
+	int					p_x;
+}						t_pattern;
 
-typedef struct		s_coord
+typedef struct			s_coord
 {
-	int				x;
-	int				y;
-}					t_coord;
+	int					x;
+	int					y;
+}						t_coord;
 
-typedef struct		s_tetrimino
+typedef struct			s_tetrimino
 {
-	int				pattern_i;
-	unsigned short	value;
-	t_bit_tab		bits;
-	t_coord			offset;
-	int				width;
-	int				height;
-}					t_tetrimino;
+	int					pattern_i;
+	unsigned short		value;
+	t_bit_tab			bits;
+	t_coord				offset;
+	int					width;
+	int					height;
+}						t_tetrimino;
 
-typedef struct		s_game
+typedef struct			s_game
 {
-	t_tetrimino		t[MAX_TETRIMINOS_NB];
-	int				t_count;
-	int				size;
-	int				total_space;
-	int				space_required;
-	unsigned short	m[16];
-	t_coord			cursor[19];
-}					t_game;
+	t_tetrimino			t[MAX_TETRIMINOS_NB];
+	int					t_count;
+	int					size;
+	int					total_space;
+	int					space_required;
+	unsigned short		m[16];
+	t_coord				cursor[19];
+}						t_game;
 
-unsigned short		str_to_bin(char *str);
-void				parse_string(char *str, t_game *game);
-int					matched_pattern_i(unsigned short value);
-void				error_msg_exit(const char *str);
-void				free_2d(char ***tab);
-int					up_to_sqrt(const int nb);
-int					resolve(t_game *game, int t_i, int d);
-void				game_solver(t_game *game);
-void				parse_file(int fd, t_game *game);
-void				print_game(unsigned short game[], int game_size);
-void				print_value_bits(unsigned short value, int cursor, int n);
-void				print_solution(t_game *game);
+unsigned short			str_to_bin(char *str);
+void					parse_string(char *str, t_game *game);
+int						matched_pattern_i(unsigned short value);
+void					error_msg_exit(const char *str);
+void					free_2d(char ***tab);
+int						up_to_sqrt(const int nb);
+int						resolve(t_game *game, int t_i);
+void					game_solver(t_game *game);
+void					parse_file(int fd, t_game *game);
+void					print_game(unsigned short game[], int game_size);
+void					print_value_bits(unsigned short value, int cursor, \
+						int n);
+void					print_solution(t_game *game);
 
 #endif
